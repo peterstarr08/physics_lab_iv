@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accurate Dark Mode Stopwatch</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #121212; /* Dark background */
+      color: #e0e0e0; /* Light text */
+    }
+    .time {
+      font-size: 5rem; /* Larger font size for minimalism */
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #121212;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #bdbdbd;
+    }
+    button:active {
+      background-color: #9e9e9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="time" id="time">0</div>
+  <div class="controls">
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+  </div>
+  <script>
+    let startTime = null;
+    let elapsedTime = 0; // Store elapsed time in milliseconds
+    let timerInterval = null;
+
+    function updateTime() {
+      const currentTime = Date.now();
+      const totalElapsed = elapsedTime + (currentTime - startTime);
+      const seconds = Math.floor(totalElapsed / 1000);
+      document.getElementById('time').textContent = seconds;
+    }
+
+    function start() {
+      if (!timerInterval) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateTime, 100); // Update the display more frequently for smoothness
+      }
+    }
+
+    function stop() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        elapsedTime += Date.now() - startTime; // Accumulate elapsed time
+      }
+    }
+
+    function reset() {
+      stop();
+      elapsedTime = 0;
+      document.getElementById('time').textContent = 0;
+    }
+  </script>
+</body>
+</html>
