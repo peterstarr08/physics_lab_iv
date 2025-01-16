@@ -165,64 +165,83 @@ _beta = errorBeta(phase1, _phase1, phase2, _phase2, distanceBetweenRods, 0.01)
 D = (2*np.pi/timePeriod)/(2*alpha*beta)
 _D = errorD(timePeriod, lcTime, alpha, _alpha, beta, _beta)
 
-print(D, _D, _D/D*100, '%')
+
+print("Sum TC1 Cos", sumTc1Cos, _sumTc1Cos)
+print("Sum TC1 Sin", sumTc1Sin, _sumTc1Sin)
+print("Sum TC2 Cos", sumTc2Cos, _sumTc2Cos)
+print("Sum TC2 Sin", sumTc2Sin, _sumTc2Sin)
+print("I1 Cos", I1Cos, _I1Cos)
+print("I1 Sin", I1Sin, _I1Sin)
+print("I2 Cos", I2Cos, _I2Cos)
+print("I2 Sin", I2Sin, _I2Sin)
+print("Amp1", Amp1, _Amp1)
+print("Amp2", Amp2, _Amp2)  
+print("Phase1", phase1, _phase1)
+print("Phase2", phase2, _phase2)
+print("Alpha", alpha, _alpha)
+print("Beta", beta, _beta)
+print("Diffusivity",D, _D)
 
 df = pd.DataFrame(
     {
+        "Time TC1": timeDataTC1,
+        "Voltage TC1": voltageDataTC1,
         "TC1 Cos": tc1Cos,
-        "Error TC1 Cos": _tc1Cos,
+        #"Error TC1 Cos": _tc1Cos,
         "TC1 Sin": tc1Sin,
-        "Error TC1 Sin": _tc1Sin,
+        #"Error TC1 Sin": _tc1Sin,
 
+        "Time TC2": timeDataTC2,
+        "Voltage TC2": voltageDataTC2,
         "TC2 Cos": tc2Cos,
-        "Error TC2 Cos": _tc2Cos,
+        #"Error TC2 Cos": _tc2Cos,
         "TC2 Sin": tc2Sin,
-        "Error TC2 Sin": _tc2Sin,
+        #"Error TC2 Sin": _tc2Sin,
 
-        "Sum TC1 Cos": sumTc1Cos,
-        "Error Sum TC1 Cos": _sumTc1Cos,
+        # "Sum TC1 Cos": sumTc1Cos,
+        # "Error Sum TC1 Cos": _sumTc1Cos,
 
-        "Sum TC1 Sin": sumTc1Sin,
-        "Error Sum TC1 Sin": _sumTc1Sin,
+        # "Sum TC1 Sin": sumTc1Sin,
+        # "Error Sum TC1 Sin": _sumTc1Sin,
 
-        "Sum TC2 Cos": sumTc2Cos,
-        "Error Sum TC2 Cos": _sumTc2Cos,
+        # "Sum TC2 Cos": sumTc2Cos,
+        # "Error Sum TC2 Cos": _sumTc2Cos,
 
-        "Sum TC2 Sin": sumTc2Sin,
-        "Error Sum TC2 Sin": _sumTc2Sin,
+        # "Sum TC2 Sin": sumTc2Sin,
+        # "Error Sum TC2 Sin": _sumTc2Sin,
 
-        "I1 Cos": I1Cos,
-        "Error I1 Cos": _I1Cos,
+        # "I1 Cos": I1Cos,
+        # "Error I1 Cos": _I1Cos,
 
-        "I1 Sin": I1Sin,
-        "Error I1 Sin": _I1Sin,
+        # "I1 Sin": I1Sin,
+        # "Error I1 Sin": _I1Sin,
 
-        "I2 Cos": I2Cos,
-        "Error I2 Cos": _I2Cos,
+        # "I2 Cos": I2Cos,
+        # "Error I2 Cos": _I2Cos,
 
-        "I2 Sin": I2Sin,
-        "Error I2 Sin": _I2Sin,
+        # "I2 Sin": I2Sin,
+        # "Error I2 Sin": _I2Sin,
 
-        "Amp1": Amp1,
-        "Error Amp1": _Amp1,
+        # "Amp1": Amp1,
+        # "Error Amp1": _Amp1,
 
-        "Amp2": Amp2,
-        "Error Amp2": _Amp2,
+        # "Amp2": Amp2,
+        # "Error Amp2": _Amp2,
 
-        "Phase1": phase1,
-        "Error Phase1": _phase1,
+        # "Phase1": phase1,
+        # "Error Phase1": _phase1,
 
-        "Phase2": phase2,
-        "Error Phase2": _phase2,
+        # "Phase2": phase2,
+        # "Error Phase2": _phase2,
 
-        "Alpha": alpha,
-        "Error Alpha": _alpha,
+        # "Alpha": alpha,
+        # "Error Alpha": _alpha,
 
-        "Beta": beta,
-        "Error Beta": _beta,
+        # "Beta": beta,
+        # "Error Beta": _beta,
 
-        "D": D,
-        "Error D": _D
+        # "D": D,
+        # "Error D": _D
 
 
     }
