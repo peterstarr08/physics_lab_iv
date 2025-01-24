@@ -13,7 +13,7 @@ lcTime = 1 #s
 lcHeaterVolateg = 0.01 #V
 lcHeaterCurrent = 0.01 #A
 
-zeroErrorVoltage = 0.007; #mV 
+zeroErrorVoltage = 0.002; #mV 
 
 
 
@@ -55,9 +55,6 @@ voltageDataTC2 = unumpy.uarray(voltageTC2.to_numpy()/1000-zeroErrorVoltage, lcVo
 
 
 
-
-
-
 #Real Shit
 
 tc1Cos = unumpy.cos(2*np.pi*timeDataTC1/timePeriod) * voltageDataTC1
@@ -75,11 +72,11 @@ sumTc2Sin = np.sum(tc2Sin) - 0.5 * (tc2Sin[0]+tc2Sin[-1])
 
 
 
-I1Cos = np.sum(tc1Cos)*readingsInterval/timePeriod
-I1Sin = np.sum(tc1Sin)*readingsInterval/timePeriod
+I1Cos = sumTc1Cos*readingsInterval/timePeriod
+I1Sin = sumTc1Sin*readingsInterval/timePeriod
 
-I2Cos = np.sum(tc2Cos)*readingsInterval/timePeriod
-I2Sin = np.sum(tc2Sin)*readingsInterval/timePeriod
+I2Cos = sumTc2Cos*readingsInterval/timePeriod
+I2Sin = sumTc2Sin*readingsInterval/timePeriod
 
 
 Amp1 = unumpy.sqrt(np.square(I1Cos) +np.square(I1Sin)) 
@@ -89,7 +86,7 @@ phase1 = unumpy.arctan2(I1Sin, I1Cos) + np.pi
 phase2 = unumpy.arctan2(I2Sin, I2Cos) + np.pi
 
 
-alpha = unumpy.log(Amp2/Amp1)/distanceBetweenRods
+alpha = -1*unumpy.log(Amp2/Amp1)/distanceBetweenRods
 beta = (phase1 - phase2)/(-1*distanceBetweenRods)
 
 D = (2*np.pi/timePeriod)/(2*alpha*beta)
@@ -109,7 +106,7 @@ print("Phase1", phase1)
 print("Phase2", phase2)
 print("Alpha", alpha)
 print("Beta", beta)
-print("Diffusivity",D)
+print("Diffusivity",D*1e6,"mm^2/s = ",D*1e4,"cm^2/s = ",D,"m^2/s")
 
 
 
